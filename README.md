@@ -1,64 +1,55 @@
-# Thai Travel Semantic Search
+# Travel Semantic Search
 
-A semantic search application for Thai tourist locations using Streamlit and the jinaai/jina-embeddings-v3 model.
-
-## Features
-
-- Semantic search for Thai tourist locations
-- Real-time search results with similarity scores
-- Thai language support
-- Interactive web interface
-
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone [your-repo-url]
-cd semantic-search
-```
-
-2. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Usage
-
-1. Run the application:
-
-```bash
-streamlit run app.py
-```
-
-2. Open your browser and navigate to http://localhost:8501
-
-3. Enter your search query in Thai, for example:
-   - "ทะเลสวย น้ำใส"
-   - "ประวัติศาสตร์"
-   - "วัดเก่าแก่"
+A multilingual semantic search application for tourist attractions, events, and news in Thailand using AI.
 
 ## Project Structure
 
 ```
 semantic-search/
-├── app.py              # Main Streamlit application
-├── config.py           # Configuration settings
-├── data/
-│   └── thai_locations.csv  # Sample dataset
-├── requirements.txt    # Project dependencies
-└── README.md          # Project documentation
+├── src/                    # Source code
+│   ├── __init__.py
+│   ├── app.py             # Main Streamlit application
+│   └── config.py          # Configuration settings
+├── data/                  # Data files
+│   ├── articles.csv
+│   ├── english_locations.csv
+│   ├── events.csv
+│   └── thai_locations.csv
+├── tests/                 # Test files
+│   └── __init__.py
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
 
-## Data
+## Features
 
-The application uses a curated dataset of Thai tourist locations including:
+- Multilingual support (Thai and English)
+- Semantic search using AI embeddings
+- Search across multiple data types:
+  - Tourist locations
+  - Events
+  - News articles
 
-- Location names
-- Detailed descriptions
-- Provinces
+## Setup
 
-## Model
+1. Install dependencies:
 
-Uses the `jinaai/jina-embeddings-v3` model for generating embeddings, which has good support for Thai language.
+```bash
+pip install -r requirements.txt
+```
+
+2. Run the application:
+
+```bash
+streamlit run src/app.py
+```
+
+## Technology Stack
+
+- Python
+- Streamlit
+- Sentence Transformers
+- scikit-learn
+- pandas
+- langdetect

@@ -9,6 +9,9 @@ import sys
 import os
 from config import *
 
+# Set up project root path
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # Configure logging with more detail
 logging.basicConfig(
     level=logging.INFO,
@@ -32,7 +35,7 @@ except Exception as e:
 def load_model():
     try:
         logger.info(f"Starting to load model: {MODEL_NAME}")
-        cache_dir = os.path.join(os.getcwd(), '.cache')
+        cache_dir = os.path.join(PROJECT_ROOT, '.cache')
         os.makedirs(cache_dir, exist_ok=True)
         logger.info(f"Cache directory: {cache_dir}")
         
@@ -52,7 +55,7 @@ def load_model():
 @st.cache_data(show_spinner=True)
 def load_locations(language):
     try:
-        locations_path = SUPPORTED_LANGUAGES[language]["locations_path"]
+        locations_path = os.path.join(PROJECT_ROOT, SUPPORTED_LANGUAGES[language]["locations_path"])
         logger.info(f"Loading {language} locations from: {locations_path}")
         df = pd.read_csv(locations_path)
         logger.info(f"Locations loaded successfully: {len(df)} records")
@@ -65,8 +68,9 @@ def load_locations(language):
 @st.cache_data(show_spinner=True)
 def load_events():
     try:
-        logger.info(f"Loading events from: {EVENTS_PATH}")
-        df = pd.read_csv(EVENTS_PATH)
+        events_path = os.path.join(PROJECT_ROOT, EVENTS_PATH)
+        logger.info(f"Loading events from: {events_path}")
+        df = pd.read_csv(events_path)
         logger.info(f"Events loaded successfully: {len(df)} records")
         return df
     except Exception as e:
@@ -77,8 +81,9 @@ def load_events():
 @st.cache_data(show_spinner=True)
 def load_articles():
     try:
-        logger.info(f"Loading articles from: {ARTICLES_PATH}")
-        df = pd.read_csv(ARTICLES_PATH)
+        articles_path = os.path.join(PROJECT_ROOT, ARTICLES_PATH)
+        logger.info(f"Loading articles from: {articles_path}")
+        df = pd.read_csv(articles_path)
         logger.info(f"Articles loaded successfully: {len(df)} records")
         return df
     except Exception as e:
